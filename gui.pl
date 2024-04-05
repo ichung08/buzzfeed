@@ -96,37 +96,35 @@ findDifferenceSum(Values, Response, Sum) :-
     sum_list(Difference, Sum).
 
 findCheeseType(Type, Response) :-
-    values_type(Type, Value),
+    cheese_values(Type, Value),
     findDifferenceSum(Value, Response, Sum),
-    \+ (values_type(OtherType, OtherValue), OtherType \= Type, findDifferenceSum(OtherValue, Response, OtherSum), OtherSum < Sum).
+    \+ (cheese_values(OtherType, OtherValue), OtherType \= Type, findDifferenceSum(OtherValue, Response, OtherSum), OtherSum < Sum).
 
-% Adapted logic for matching cheese type based on the user inputs
+% Logic for matching cheese type based on the user inputs
 get_cheese_match(R1, R2, R3, R4, R5, R6, R7) :-
-    % Implementation assumes adapted findType and display_cheese_type predicates
+    new(ResponseDialog, dialog('Your Cheese Match')),
+    send(ResponseDialog, gap, size(0, 20)),
     findCheeseType(Type, [R1, R2, R3, R4, R5, R6, R7]),
-    display_cheese_type(Type).
+    write(Type),
+    writeln(' type matched.'),
+    display_cheese_personality(ResponseDialog, Type).
 
 % Display the cheese type image and explanation for the given type
-display_cheese_type(Type) :-
-    cheese_type(Type, ImagePath, Explanation),
-    
-    % Cheese match header
-    cheese_name(Type, Name),
-    format(atom(MatchedHeaderText), 'You matched with ~w cheese!', [Name]),
+display_cheese_personality(ResponseDialog, Type) :-
+    cheese_personality(Type, Explanation),
+    format(atom(MatchedHeaderText), 'You matched with ~w cheese!', [Type]),
     new(MatchHeader, text(MatchedHeaderText)),
     send(MatchHeader, font, font(helvetica, bold, 20)),
-    new(ResponseDialog, dialog('Your Cheese Match')),
     send(ResponseDialog, append, MatchHeader),
     
-    % Add image of the matched cheese
-    new(Image, bitmap(ImagePath)),
-    send(ResponseDialog, append, Image),
+    % Optionally, add image of the matched cheese
+    % cheese_personality(Type, ImagePath, _), % Uncomment if using images
+    % new(Image, bitmap(ImagePath)), % Uncomment if using images
+    % send(ResponseDialog, append, Image), % Uncomment if using images
 
-    % Add the text explanation
     send(ResponseDialog, append, new(ExplanationLabel, text(Explanation))),
     send(ExplanationLabel, font, font(helvetica, roman, 15)),
     
-    % Line separator
     send(ResponseDialog, append, new(Line2, line(0, 0, 800, 0))),
     send(Line2, y, 200),
     send(Line2, x, 50),
@@ -134,4 +132,5 @@ display_cheese_type(Type) :-
     send(ResponseDialog, append, button('OK', message(ResponseDialog, destroy))),
     send(ResponseDialog, default_button, 'OK'),
     send(ResponseDialog, open_centered).
+
 
