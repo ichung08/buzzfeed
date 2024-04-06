@@ -1,16 +1,16 @@
 % values type for each cheese
-cheese_values(brie, [1, 2, 3, 4, 5, 6, 1]).
-cheese_values(cheddar, [1, 2, 3, 4, 5, 1, 2]).
-cheese_values(goat, [1, 2, 3, 4, 5, 1, 1]).
-cheese_values(gouda, [1, 2, 3, 4, 5, 2, 1]).
-cheese_values(mozzarella, [1, 2, 3, 4, 5, 1, 1]).
-cheese_values(pepperjack, [1, 2, 3, 4, 5, 2, 1]).
-cheese_values(provolone, [1, 2, 3, 4, 5, 1, 1]).
-cheese_values(swiss, [1, 2, 3, 4, 5, 2, 1]).
-cheese_values(queso, [1, 2, 3, 4, 5, 1, 1]).
-cheese_values(blue, [1, 2, 3, 4, 5, 2, 1]).
-cheese_values(feta, [1, 2, 3, 4, 5, 1, 1]).
-cheese_values(colby, [1, 2, 3, 4, 5, 2, 1]).
+cheese_values(brie, [4, 4, 5, 3, 5, 8, 1]).
+cheese_values(cheddar, [4, 1, 3, 7, 5, 3, 2]).
+cheese_values(goat, [3, 5, 3, 3, 6, 22, 2]).
+cheese_values(gouda, [1, 2, 2, 4, 2, 1, 1]).
+cheese_values(mozzarella, [3, 2, 6, 1, 3, 10, 1]).
+cheese_values(pepperjack, [3, 1, 6, 4, 2, 25, 1]).
+cheese_values(provolone, [4, 5, 3, 8, 3, 23, 2]).
+cheese_values(swiss, [3, 4, 2, 4, 2, 26, 2]).
+cheese_values(queso, [4, 1, 6, 7, 5, 5, 1]).
+cheese_values(blue, [2, 6, 5, 7, 4, 2, 2]).
+cheese_values(feta, [3, 6, 2, 7, 1, 5, 1]).
+cheese_values(colby, [2, 3, 2, 5, 4, 5, 2]).
 
 % questions
 cheese_question_1('Pick a card game: \n Uno (1), Go Fish (2), Solitare (3), or Poker (4)').
