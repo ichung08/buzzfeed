@@ -117,8 +117,8 @@ display_cheese_personality(ResponseDialog, Type) :-
     send(MatchHeader, font, font(helvetica, bold, 20)),
     send(ResponseDialog, append, MatchHeader),
     
-    % new(Image, bitmap(ImagePath)),
-    % send(ResponseDialog, append, Image),
+    new(Image, bitmap(ImagePath)),
+    send(ResponseDialog, append, Image),
 
     send(ResponseDialog, append, new(ExplanationLabel, text(Explanation))),
     send(ExplanationLabel, font, font(helvetica, roman, 15)),
