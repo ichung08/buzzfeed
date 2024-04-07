@@ -22,15 +22,15 @@ cheese_question_6('Choose the first letter of your name: \n A (1), B (2), C (3),
 cheese_question_7('Do you wear glasses? \n Yes (1) or No (2)').
 
 % cheese personality type
-cheese_personality(brie, 'You are a Brie! You are soft and creamy, and you have a mild and buttery flavor. \n You are sophisticated and elegant, and you are always a hit at parties.').
-cheese_personality(cheddar, 'You are a Cheddar! You are sharp and tangy, and you have a rich and nutty flavor. \n You are a classic and reliable choice, and you are always a crowd-pleaser.').
-cheese_personality(goat, 'You are a Goat Cheese! You are creamy and tangy, and you have a distinct and earthy flavor. \n You are unique and adventurous, and you are always willing to try new things.').
-cheese_personality(gouda, 'You are a Gouda! You are smooth and nutty, and you have a sweet and caramelized flavor. \n You are warm and comforting, and you are always a comforting presence.').
-cheese_personality(mozzarella, 'You are a Mozzarella! You are soft and milky, and you have a fresh and delicate flavor. \n You are light and refreshing, and you are always a delightful addition to any dish.').
-cheese_personality(pepperjack, 'You are a Pepper Jack! You are spicy and zesty, and you have a bold and fiery flavor. \n You are lively and energetic, and you are always ready to spice things up.').
-cheese_personality(provolone, 'You are a Provolone! You are smooth and smoky, and you have a sharp and tangy flavor. \n You are versatile and adaptable, and you are always a reliable choice.').
-cheese_personality(swiss, 'You are a Swiss! You are nutty and sweet, and you have a mild and buttery flavor. \n You are classic and timeless, and you are always a comforting presence.').
-cheese_personality(queso, 'You are a Queso! You are creamy and spicy, and you have a bold and zesty flavor. \n You are lively and energetic, and you are always ready to spice things up.').
-cheese_personality(blue, 'You are a Blue Cheese! You are bold and tangy, and you have a sharp and pungent flavor. \n You are strong and assertive, and you are always a memorable presence.').
-cheese_personality(feta, 'You are a Feta! You are crumbly and tangy, and you have a salty and briny flavor. \n You are unique and adventurous, and you are always willing to try new things.').
-cheese_personality(colby, 'You are a Colby! You are mild and mellow, and you have a smooth and creamy flavor. \n You are easygoing and laid-back, and you are always a comforting presence.').
+cheese_personality(brie, 'You are a Brie! You are soft and creamy, and you have a mild and buttery flavor. \n You are sophisticated and elegant, and you are always a hit at parties.','assets/images/brie.png').
+cheese_personality(cheddar, 'You are a Cheddar! You are sharp and tangy, and you have a rich and nutty flavor. \n You are a classic and reliable choice, and you are always a crowd-pleaser.','assets/images/cheddar.png').
+cheese_personality(goat, 'You are a Goat Cheese! You are creamy and tangy, and you have a distinct and earthy flavor. \n You are unique and adventurous, and you are always willing to try new things.','assets/images/goat.png').
+cheese_personality(gouda, 'You are a Gouda! You are smooth and nutty, and you have a sweet and caramelized flavor. \n You are warm and comforting, and you are always a comforting presence.','assets/images/gouda.png').
+cheese_personality(mozzarella, 'You are a Mozzarella! You are soft and milky, and you have a fresh and delicate flavor. \n You are light and refreshing, and you are always a delightful addition to any dish.','assets/images/mozzarella.png').
+cheese_personality(pepperjack, 'You are a Pepper Jack! You are spicy and zesty, and you have a bold and fiery flavor. \n You are lively and energetic, and you are always ready to spice things up.','assets/images/pepperjack.png').
+cheese_personality(provolone, 'You are a Provolone! You are smooth and smoky, and you have a sharp and tangy flavor. \n You are versatile and adaptable, and you are always a reliable choice.','assets/images/provolone.png').
+cheese_personality(swiss, 'You are a Swiss! You are nutty and sweet, and you have a mild and buttery flavor. \n You are classic and timeless, and you are always a comforting presence.','assets/images/swiss.png').
+cheese_personality(queso, 'You are a Queso! You are creamy and spicy, and you have a bold and zesty flavor. \n You are lively and energetic, and you are always ready to spice things up.','assets/images/queso.png').
+cheese_personality(blue, 'You are a Blue Cheese! You are bold and tangy, and you have a sharp and pungent flavor. \n You are strong and assertive, and you are always a memorable presence.','assets/images/blue.png').
+cheese_personality(feta, 'You are a Feta! You are crumbly and tangy, and you have a salty and briny flavor. \n You are unique and adventurous, and you are always willing to try new things.','assets/images/feta.png').
+cheese_personality(colby, 'You are a Colby! You are mild and mellow, and you have a smooth and creamy flavor. \n You are easygoing and laid-back, and you are always a comforting presence.','assets/images/colby.png').

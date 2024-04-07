@@ -111,16 +111,14 @@ get_cheese_match(R1, R2, R3, R4, R5, R6, R7) :-
 
 % Display the cheese type image and explanation for the given type
 display_cheese_personality(ResponseDialog, Type) :-
-    cheese_personality(Type, Explanation),
+    cheese_personality(Type, Explanation, ImagePath),
     format(atom(MatchedHeaderText), 'You matched with ~w cheese!', [Type]),
     new(MatchHeader, text(MatchedHeaderText)),
     send(MatchHeader, font, font(helvetica, bold, 20)),
     send(ResponseDialog, append, MatchHeader),
     
-    % Optionally, add image of the matched cheese
-    % cheese_personality(Type, ImagePath, _), % Uncomment if using images
-    % new(Image, bitmap(ImagePath)), % Uncomment if using images
-    % send(ResponseDialog, append, Image), % Uncomment if using images
+    % new(Image, bitmap(ImagePath)),
+    % send(ResponseDialog, append, Image),
 
     send(ResponseDialog, append, new(ExplanationLabel, text(Explanation))),
     send(ExplanationLabel, font, font(helvetica, roman, 15)),
