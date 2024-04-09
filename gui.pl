@@ -8,9 +8,8 @@
 % main entry point to open and start the gui
 run_gui :-
     init_window(Window),
-    init_header(Header, CheeseIcon),
     init_questions(QuestionDialog),
-    display_header(Window, Header, CheeseIcon),
+    display_header(Window, Header),
     display_questions(Window, Header, QuestionDialog),
     open_window(Window).
 
@@ -23,21 +22,13 @@ init_window(Window) :-
     new(Window, window("What Type of Cheese Are You?")), % sets window title
     send(Window, size, size(900, 180)). % width x height
 
-% initialize application heading with text and cheese icon
-init_header(Header, CheeseIcon) :-
-    new(Header, text('Discover Your Cheese Type!')), % create new object for the header
-    send(Header, font, font(helvetica, bold, 30)), % set font, weight, and size
-    new(CheeseIcon, bitmap('assets/images/xpm/cheese.xpm')). % display cheese image using `bitmap`
-
 % display header objects onto the window
-display_header(Window, Header, CheeseIcon) :-
+display_header(Window, Header) :-
+    new(Header, text('"What Type of Cheese Are You?"')),
+    send(Header, font, font(helvetica, bold, 30)), 
     send(Window, display, Header),
     send(Header, center_x, Window?center_x),
-    send(Header, y, 70),
-    send(Window, display, CheeseIcon),
-    % set positioning
-    send(CheeseIcon, y, 10),
-    send(CheeseIcon, x, 60).
+    send(Header, y, 70).
     
 % initialize questions dialog
 init_questions(QuestionDialog) :-
