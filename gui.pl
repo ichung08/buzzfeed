@@ -25,7 +25,7 @@ init_window(Window) :-
 % display header objects onto the window
 display_header(Window, Header) :-
     new(Header, text('"What Type of Cheese Are You?"')),
-    send(Header, font, font(helvetica, bold, 30)), 
+    send(Header, font, font(times, bold, 30)), 
     send(Window, display, Header),
     send(Header, center_x, Window?center_x),
     send(Header, y, 70).
@@ -121,14 +121,14 @@ display_cheese_personality(ResponseDialog, Type, Percent, SecondBestType, Second
     cheese_personality(Type, Explanation, ImagePath),
     format(atom(MatchedHeaderText), 'You are a ~w% match with ~w cheese!', [Percent, Type]),
     new(MatchHeader, text(MatchedHeaderText)),
-    send(MatchHeader, font, font(helvetica, bold, 20)),
+    send(MatchHeader, font, font(times, bold, 20)),
     send(ResponseDialog, append, MatchHeader),
     
     new(Image, bitmap(ImagePath)),
     send(ResponseDialog, append, Image),
 
     send(ResponseDialog, append, new(ExplanationLabel, text(Explanation))),
-    send(ExplanationLabel, font, font(helvetica, roman, 15)),
+    send(ExplanationLabel, font, font(times, roman, 15)),
     
     send(ResponseDialog, append, new(Line2, line(0, 0, 800, 0))),
     send(Line2, y, 200),
@@ -136,7 +136,7 @@ display_cheese_personality(ResponseDialog, Type, Percent, SecondBestType, Second
 
     format(atom(WorstMatch), 'Your second best match is ~w% with ~w! Your worst match is ~w% with ~w.', [SecondBestPercent, SecondBestType, WorstPercent, WorstType]),
     send(ResponseDialog, append, new(WorstMatchLabel, text(WorstMatch))),
-    send(WorstMatchLabel, font, font(helvetica, roman, 15)),
+    send(WorstMatchLabel, font, font(times, roman, 15)),
     
     send(ResponseDialog, append, button('OK', message(ResponseDialog, destroy))),
     send(ResponseDialog, default_button, 'OK'),
