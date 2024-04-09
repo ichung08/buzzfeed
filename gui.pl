@@ -95,24 +95,40 @@ findDifferenceSum(Values, Response, Sum) :-
     subtractList(Values, Response, Difference),
     sum_list(Difference, Sum).
 
-findCheeseType(Type, Response) :-
+findBestCheeseMatch(Type, Response, Percent) :-
     cheese_values(Type, Value),
     findDifferenceSum(Value, Response, Sum),
+    Percent is round((51 - Sum)*100 / 51),
     \+ (cheese_values(OtherType, OtherValue), OtherType \= Type, findDifferenceSum(OtherValue, Response, OtherSum), OtherSum < Sum).
+
+findSecondBestCheeseMatch(Type, BestType, Response, Percent) :-
+    cheese_values(Type, Value),
+    Type \= BestType,
+    findDifferenceSum(Value, Response, Sum),
+    Percent is round((51 - Sum)*100 / 51),
+    \+ (cheese_values(OtherType, OtherValue), OtherType \= Type, OtherType \= BestType, findDifferenceSum(OtherValue, Response, OtherSum), OtherSum < Sum).
+
+findWorstCheeseMatch(Type, Response, Percent) :-
+    cheese_values(Type, Value),
+    findDifferenceSum(Value, Response, Sum),
+    Percent is round((51 - Sum)*100 / 51),
+    \+ (cheese_values(OtherType, OtherValue), OtherType \= Type, findDifferenceSum(OtherValue, Response, OtherSum), OtherSum > Sum).
 
 % Logic for matching cheese type based on the user inputs
 get_cheese_match(R1, R2, R3, R4, R5, R6, R7) :-
     new(ResponseDialog, dialog('Your Cheese Match')),
     send(ResponseDialog, gap, size(0, 20)),
-    findCheeseType(Type, [R1, R2, R3, R4, R5, R6, R7]),
-    write(Type),
+    findBestCheeseMatch(BestType, [R1, R2, R3, R4, R5, R6, R7], BestPercent),
+    findSecondBestCheeseMatch(SecondBestType, BestType, [R1, R2, R3, R4, R5, R6, R7], SecondBestPercent),
+    findWorstCheeseMatch(WorstType, [R1, R2, R3, R4, R5, R6, R7], WorstPercent),
+    write(BestType),
     writeln(' type matched.'),
-    display_cheese_personality(ResponseDialog, Type).
+    display_cheese_personality(ResponseDialog, BestType, BestPercent, SecondBestType, SecondBestPercent, WorstType, WorstPercent). 
 
 % Display the cheese type image and explanation for the given type
-display_cheese_personality(ResponseDialog, Type) :-
+display_cheese_personality(ResponseDialog, Type, Percent, SecondBestType, SecondBestPercent, WorstType, WorstPercent) :-
     cheese_personality(Type, Explanation, ImagePath),
-    format(atom(MatchedHeaderText), 'You matched with ~w cheese!', [Type]),
+    format(atom(MatchedHeaderText), 'You are a ~w% match with ~w cheese!', [Percent, Type]),
     new(MatchHeader, text(MatchedHeaderText)),
     send(MatchHeader, font, font(helvetica, bold, 20)),
     send(ResponseDialog, append, MatchHeader),
@@ -126,6 +142,10 @@ display_cheese_personality(ResponseDialog, Type) :-
     send(ResponseDialog, append, new(Line2, line(0, 0, 800, 0))),
     send(Line2, y, 200),
     send(Line2, x, 50),
+
+    format(atom(WorstMatch), 'Your second best match is ~w% with ~w! Your worst match is ~w% with ~w.', [SecondBestPercent, SecondBestType, WorstPercent, WorstType]),
+    send(ResponseDialog, append, new(WorstMatchLabel, text(WorstMatch))),
+    send(WorstMatchLabel, font, font(helvetica, roman, 15)),
     
     send(ResponseDialog, append, button('OK', message(ResponseDialog, destroy))),
     send(ResponseDialog, default_button, 'OK'),
