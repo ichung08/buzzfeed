@@ -8,9 +8,9 @@
 % main entry point to open and start the gui
 run_gui :-
     init_window(Window),
-    init_questions(QuestionDialog),
+    init_questions(Questions),
     display_header(Window, Header),
-    display_questions(Window, Header, QuestionDialog),
+    display_questions(Window, Header, Questions),
     open_window(Window).
 
 % open XQuartz window
@@ -30,10 +30,10 @@ display_header(Window, Header) :-
     send(Header, center_x, Window?center_x),
     send(Header, y, 70).
     
-% initialize questions dialog
-init_questions(QuestionDialog) :-
-    new(QuestionDialog, dialog),
-    send(QuestionDialog, gap, size(0, 50)), % sets gap size between elements
+% initialize questions
+init_questions(Questions) :-
+    new(Questions, dialog),
+    send(Questions, gap, size(0, 50)), % sets gap size between elements
     
     % Assume updated question_label_X predicates exist or update as necessary
     cheese_question_1(Label1),
@@ -45,14 +45,14 @@ init_questions(QuestionDialog) :-
     cheese_question_7(Label7),
     
     % Replace sliders with appropriate GUI elements if necessary
-    send(QuestionDialog, append, new(Question1, slider(Label1, 1, 4, 1))),
-    send(QuestionDialog, append, new(Question2, slider(Label2, 1, 6, 1))),
-    send(QuestionDialog, append, new(Question3, slider(Label3, 1, 6, 1))),
-    send(QuestionDialog, append, new(Question4, slider(Label4, 1, 8, 1))),
-    send(QuestionDialog, append, new(Question5, slider(Label5, 1, 6, 1))),
-    send(QuestionDialog, append, new(Question6, slider(Label6, 1, 26, 1))),
-    send(QuestionDialog, append, new(Question7, slider(Label7, 1, 2, 1))),
-    send(QuestionDialog, append, button('Discover Your Cheese Type',
+    send(Questions, append, new(Question1, slider(Label1, 1, 4, 1))),
+    send(Questions, append, new(Question2, slider(Label2, 1, 6, 1))),
+    send(Questions, append, new(Question3, slider(Label3, 1, 6, 1))),
+    send(Questions, append, new(Question4, slider(Label4, 1, 8, 1))),
+    send(Questions, append, new(Question5, slider(Label5, 1, 6, 1))),
+    send(Questions, append, new(Question6, slider(Label6, 1, 26, 1))),
+    send(Questions, append, new(Question7, slider(Label7, 1, 2, 1))),
+    send(Questions, append, button('Discover Your Cheese Type',
         message(@prolog,
             get_cheese_match,
             Question1?selection,
@@ -63,11 +63,11 @@ init_questions(QuestionDialog) :-
             Question6?selection,
             Question7?selection))).
 
-% display questions dialog onto the window
-display_questions(Window, Header, QuestionDialog) :-
-    send(Window, display, QuestionDialog),
-    send(QuestionDialog, below, Header),
-    send(QuestionDialog, center_x, Window?center_x).
+% display questions onto the window
+display_questions(Window, Header, Questions) :-
+    send(Window, display, Questions),
+    send(Questions, below, Header),
+    send(Questions, center_x, Window?center_x).
 
 % find the difference between two lists
 sub(X, Y, Z) :- Z is X - Y.
@@ -82,16 +82,20 @@ sum_list([H|T], Sum) :-
    sum_list(T, Rest),
    Sum is abs(H) + Rest.
 
+% sum the differences of value - response 
 findDifferenceSum(Values, Response, Sum) :-
     subtractList(Values, Response, Difference),
     sum_list(Difference, Sum).
 
+% identify the cheese personality closest aligned with response
+% Base inspired by: https://github.com/danielcapacio/pokemon-personality-test
 findBestCheeseMatch(Type, Response, Percent) :-
     cheese_values(Type, Value),
     findDifferenceSum(Value, Response, Sum),
     Percent is round((51 - Sum)*100 / 51),
     \+ (cheese_values(OtherType, OtherValue), OtherType \= Type, findDifferenceSum(OtherValue, Response, OtherSum), OtherSum < Sum).
 
+% identify the cheese personality closest to the best personality
 findSecondBestCheeseMatch(Type, BestType, Response, Percent) :-
     cheese_values(Type, Value),
     Type \= BestType,
@@ -99,13 +103,15 @@ findSecondBestCheeseMatch(Type, BestType, Response, Percent) :-
     Percent is round((51 - Sum)*100 / 51),
     \+ (cheese_values(OtherType, OtherValue), OtherType \= Type, OtherType \= BestType, findDifferenceSum(OtherValue, Response, OtherSum), OtherSum < Sum).
 
+% identify the worst cheese personality match to the response
 findWorstCheeseMatch(Type, Response, Percent) :-
     cheese_values(Type, Value),
     findDifferenceSum(Value, Response, Sum),
     Percent is round((51 - Sum)*100 / 51),
     \+ (cheese_values(OtherType, OtherValue), OtherType \= Type, findDifferenceSum(OtherValue, Response, OtherSum), OtherSum > Sum).
 
-% Logic for matching cheese type based on the user inputs
+% logic for matching cheese type based on the user inputs
+% Base inspired by: https://github.com/danielcapacio/pokemon-personality-test
 get_cheese_match(R1, R2, R3, R4, R5, R6, R7) :-
     new(ResponseDialog, dialog('Your Cheese Match')),
     send(ResponseDialog, gap, size(0, 20)),
@@ -116,7 +122,8 @@ get_cheese_match(R1, R2, R3, R4, R5, R6, R7) :-
     writeln(' type matched.'),
     display_cheese_personality(ResponseDialog, BestType, BestPercent, SecondBestType, SecondBestPercent, WorstType, WorstPercent). 
 
-% Display the cheese type image and explanation for the given type
+% display the cheese type image and explanation for the given type
+% Base inspired by: https://github.com/danielcapacio/pokemon-personality-test
 display_cheese_personality(ResponseDialog, Type, Percent, SecondBestType, SecondBestPercent, WorstType, WorstPercent) :-
     cheese_personality(Type, Explanation, ImagePath),
     format(atom(MatchedHeaderText), 'You are a ~w% match with ~w cheese!', [Percent, Type]),
@@ -141,5 +148,3 @@ display_cheese_personality(ResponseDialog, Type, Percent, SecondBestType, Second
     send(ResponseDialog, append, button('OK', message(ResponseDialog, destroy))),
     send(ResponseDialog, default_button, 'OK'),
     send(ResponseDialog, open_centered).
-
-

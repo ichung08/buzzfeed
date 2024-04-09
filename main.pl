@@ -1,8 +1,6 @@
 /*
- * Main file for application entry.
- * 
  * to run:
- *      ?- [gui, main].
+ *      ?- [gui, main, text].
  *      ?- run.
  */
 

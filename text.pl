@@ -15,7 +15,7 @@ cheese_values(colby, [2, 3, 2, 5, 4, 5, 2]).
 % questions
 % each question is chosen from a list of variants, all having the same number of answers
 
-% question 1
+% question 1 variants and randomization
 question_1_variant('Pick a card game: \n Uno (1), Go Fish (2), Solitaire (3), or Poker (4)').
 question_1_variant('Choose your favorite season: \n Spring (1), Summer (2), Autumn (3), Winter (4)').
 question_1_variant('Whats your preferred pet? \n Cat (1), Dog (2), Bird (3), Fish (4)').
@@ -27,7 +27,7 @@ cheese_question_1(QuestionVariant) :-
     nth0(Index, QuestionVariants, QuestionVariant).
 
 
-% question 2
+% question 2 variants and randomization
 question_2_variant('Pick a candy: \n Kit Kat (1), Reeses (2), Lollipop (3), Twix (4), Skittles (5), or Gummy Bears (6)').
 question_2_variant('Choose a type of chocolate: \n Milk Chocolate (1), Dark Chocolate (2), White Chocolate (3), Chocolate with Nuts (4), Chocolate with Caramel (5), or Chocolate Truffle (6)').
 question_2_variant('Select your favorite fruit: \n Apple (1), Banana (2), Cherry (3), Dragon Fruit (4), Elderberry (5), or Fig (6)').
@@ -38,7 +38,7 @@ cheese_question_2(QuestionVariant) :-
     random(0, Length, Index),
     nth0(Index, QuestionVariants, QuestionVariant).
 
-% question 3
+% question 3 variants and randomization
 question_3_variant('How would your friends describe you? \n Kind (1), Loyal (2), Funny (3), Creative (4), Outgoing (5), or Annoying (6)').
 question_3_variant('What is your preferred way to spend a weekend? \n Reading (1), Hiking (2), Watching Movies (3), Crafting (4), Socializing (5), or Sleeping (6)').
 question_3_variant('Pick a music genre: \n Rock (1), Pop (2), Jazz (3), Classical (4), Hip-Hop (5), or Electronic (6)').
@@ -49,7 +49,7 @@ cheese_question_3(QuestionVariant) :-
     random(0, Length, Index),
     nth0(Index, QuestionVariants, QuestionVariant).
 
-% q4
+% question 4 variants and randomization
 question_4_variant('Pick the song of the summer: \n Señorita by Shawn Mendes and Camila Cabello (1), Truth Hurts by Lizzo (2), \n Old Town Road by Lil Nas X (3), bad guy by Billie Eilish (4), \n You Need To Calm Down by Taylor Swift (5), I Dont Care by Ed Sheeran and Justin Bieber (6), \n Talk by Khalid (7), Never Really Over by Katy Perry (8)').
 question_4_variant('Choose a classic rock song: \n Stairway to Heaven by Led Zeppelin (1), Bohemian Rhapsody by Queen (2), \n Hotel California by The Eagles (3), Sweet Child o\' Mine by Guns N\' Roses (4), \n Imagine by John Lennon (5), Born to Run by Bruce Springsteen (6), \n Comfortably Numb by Pink Floyd (7), Smells Like Teen Spirit by Nirvana (8)').
 question_4_variant('Select a hit from the 2000s: \n Yeah! by Usher (1), Hollaback Girl by Gwen Stefani (2), \n Mr. Brightside by The Killers (3), Viva La Vida by Coldplay (4), \n Umbrella by Rihanna (5), Rolling in the Deep by Adele (6), \n SexyBack by Justin Timberlake (7), Crazy by Gnarls Barkley (8)').
@@ -60,7 +60,7 @@ cheese_question_4(QuestionVariant) :-
     random(0, Length, Index),
     nth0(Index, QuestionVariants, QuestionVariant).
 
-% q5
+% question 5 variants and randomization
 question_5_variant('Pick a social media platform: \n Instagram (1), Snapchat (2), Twitter (3), Facebook (4), TikTok (5), or Pinterest (6)').
 question_5_variant('Choose a type of blog to follow: \n Travel (1), Food (2), Fashion (3), Technology (4), Fitness (5), or DIY (6)').
 question_5_variant('Select your go-to news source: \n BBC (1), CNN (2), Fox News (3), The New York Times (4), The Guardian (5), or Al Jazeera (6)').
@@ -71,7 +71,7 @@ cheese_question_5(QuestionVariant) :-
     random(0, Length, Index),
     nth0(Index, QuestionVariants, QuestionVariant).
 
-% q6
+% question 6 variants and randomization
 question_6_variant('Choose the first letter of your name: \n A (1), B (2), C (3), D (4), E (5), F (6), \n G (7), H (8), I (9), J (10), K (11), L (12), \n M (13), N (14), O (15), P (16), Q (17), R (18), \n S (19), T (20), U (21), V (22), W (23), X (24), Y (25), Z (26)').
 question_6_variant('Select the first letter of your favorite city: \n A (1), B (2), C (3), D (4), E (5), F (6), \n G (7), H (8), I (9), J (10), K (11), L (12), \n M (13), N (14), O (15), P (16), Q (17), R (18), \n S (19), T (20), U (21), V (22), W (23), X (24), Y (25), Z (26)').
 question_6_variant('Pick the first letter of your favorite food: \n A (1), B (2), C (3), D (4), E (5), F (6), \n G (7), H (8), I (9), J (10), K (11), L (12), \n M (13), N (14), O (15), P (16), Q (17), R (18), \n S (19), T (20), U (21), V (22), W (23), X (24), Y (25), Z (26)').
@@ -82,7 +82,7 @@ cheese_question_6(QuestionVariant) :-
     random(0, Length, Index),
     nth0(Index, QuestionVariants, QuestionVariant).
 
-% q7
+% question 7 variants and randomization
 question_7_variant('Do you wear glasses? \n Yes (1) or No (2)').
 question_7_variant('Are you a morning person? \n Yes (1) or No (2)').
 question_7_variant('Have you traveled to another country? \n Yes (1) or No (2)').
