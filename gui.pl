@@ -20,11 +20,12 @@ open_window(Window) :-
 % initialize empty window object
 init_window(Window) :-
     new(Window, window("What Type of Cheese Are You?")), % sets window title
-    send(Window, size, size(900, 180)). % width x height
+    send(Window, size, size(900, 180)), % width x height
+    send(Window, background, yellow). % sets window background color
 
 % display header objects onto the window
 display_header(Window, Header) :-
-    new(Header, text('"What Type of Cheese Are You?"')),
+    new(Header, text('Discover Your Cheese Type!')),
     send(Header, font, font(times, bold, 30)), 
     send(Window, display, Header),
     send(Header, center_x, Window?center_x),
